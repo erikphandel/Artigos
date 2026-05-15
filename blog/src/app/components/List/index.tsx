@@ -7,7 +7,7 @@ type Props = {
 
 export default function List({artigos}: Props) {
     return (
-        <section>
+        <section className="container mx-auto px-4 py-8">
             {artigos.map(artigo => (
                 <ListElement key={artigo.id} artigo={artigo} />
             ))}

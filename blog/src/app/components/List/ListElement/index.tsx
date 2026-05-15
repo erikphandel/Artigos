@@ -5,12 +5,12 @@ export default function ListElement({artigo}: { artigo: Artigo }) {
     const {id, titulo, autor, dataPublicacao, palavrasChave} = artigo
     return (
         <div key={id}>
-            <Link href={`/artigos/${id}`}>{titulo}</Link>
-            <p>{autor}</p>
-            <p>{dataPublicacao}</p>
+            <Link className="text-gray-600 text-4xl hover:text-blue-500" href={`/artigos/${id}`}>{titulo}</Link>
+            <p className="text-gray-600">{autor}</p>
+            <p className="text-gray-500">{dataPublicacao}</p>
             <ul className="flex flex-wrap gap-2">
                 {palavrasChave.map((palavra: string) => (
-                    <li key={palavra} className="bg-blue-500 text-white px-3 py-1 rounded-full">
+                    <li key={palavra} className="text-blue-500 cursor-pointer underline">
                         {palavra}
                     </li>
                 ))}

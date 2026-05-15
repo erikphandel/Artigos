@@ -1,4 +1,10 @@
 import { artigosJson } from "@/lib/artigos";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: `{$artigosJson.find(artigo => artigo.id == id)?.titulo} - Tecnologias modernas`,
+    description: `{artigosJson.find(artigo => artigo.id == id)?.conteudo.slice(0, 150)}...`,
+}
 
 export default async function ArtigoPage({ params }: { params: Promise<{ id: number } >}) {
     const { id } = await params;
@@ -7,18 +13,18 @@ export default async function ArtigoPage({ params }: { params: Promise<{ id: num
     if (!details) {
         return <p>Artigo não encontrado</p>
     } return (
-        <>
-            <h1 className="text-3xl font-bold mb-4">{details.titulo}</h1>
-            <p>{details.autor}</p>
-            <p>{details.dataPublicacao}</p>
-            <p>{details.conteudo}</p>
+        <div className="container mx-auto px-4 py-8">
+            <h1 className="text-gray-600 text-4xl">{details.titulo}</h1>
+            <p className="text-gray-600">{details.autor}</p>
+            <p className="text-gray-500">{details.dataPublicacao}</p>
+            <p className="text-gray-700">{details.conteudo}</p>
             <ul className="flex flex-wrap gap-2">
                 {details.palavrasChave.map((palavra: string) => (
-                    <li key={palavra} className="bg-blue-500 text-white px-3 py-1 rounded-full">
+                    <li key={palavra} className="text-blue-500 cursor-pointer underline">
                         {palavra}
                     </li>
                 ))}
             </ul>
-        </>
+        </div>
     )
 }
